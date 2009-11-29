@@ -14,4 +14,4 @@ Currently very much in development.
 - Go to /dreque/ and see it in action.
 
 ## Screenshot
-![Dreque main screen](http://cld.ly/19lh2)
+[![Dreque main screen](http://cld.ly/77lh6)](http://cld.ly/19lh2)
