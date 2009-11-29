@@ -2,7 +2,7 @@
 
 from distutils.core import setup
 
-from dreque import __version__ as version
+from dreque_frontend import __version__ as version
 
 dependencies = ["redis"]
 
