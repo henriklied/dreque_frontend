@@ -3,7 +3,9 @@
     <head>
         <meta http-equiv="Content-type" content="text/html; charset=utf-8">
         <title>{% block title %}{% endblock %} | Dreque</title>
-        <link rel="stylesheet" href="{{ MEDIA_URL }}dreque/css/style.css" type="text/css" media="screen" charset="utf-8">
+        <style type="text/css" media="screen">
+            {% include "dreque_frontend/style.css" %}
+        </style>
     </head>
     
     <body>

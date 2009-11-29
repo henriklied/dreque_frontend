@@ -10,7 +10,6 @@ Currently very much in development, so please try to excuse the complete lack of
 ## Installation
 - Add 'dreque_frontend' (the subdirectory of this one) somewhere on PYTHONPATH, and add it to your project's INSTALLED_APPS
 - Add `REDIS_ADDR` to your `settings.py`. This can be either a IP, hostname (Redis will fall back to the default port) or either a string in the format `hostname:ip` or a tuple in the format ('hostname', 'ip').
-- Symlink dreque_frontend/static to your_media_root/dreque
 - Add `(r'^dreque/', include('dreque_frontend.urls')),` to your project's `urls.py`
 - Go to /dreque/ and see it in action.
 
