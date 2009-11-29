@@ -1,0 +1,37 @@
+{% extends "dreque_frontend/base.html" %}
+{% load dreque_tags %}
+
+{% block title %}Queue: {{ queue_name }}{% endblock %}
+
+{% block content %}
+    <h2>Queue overview: <span>{{ queue_name }} ({{ dreque|size:queue_name }})</span></h2>
+    
+    <h3>Jobs awaiting processing</h3>
+    <table border="1" cellspacing="0" cellpadding="5">
+        <thead>
+            <tr>
+                <th>Function</th>
+                <th>args</th>
+                <th>kwargs</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in dreque|peek:queue_name %}
+            <tr class="{% cycle odd,even as rowcolors %}">
+                <td>{{ item.func}}</td>
+                <td>{{ item.args|none_or_list|default:"Empty" }}</td>
+                <td><ul>
+                    {% for arg in item.kwargs.items %}
+                    <li><strong>{{ arg.0 }}</strong>: {{ arg.1 }}</li>
+                {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3"><em>No jobs</em>.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>    
+{% endblock %}

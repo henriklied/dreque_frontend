@@ -1,0 +1,73 @@
+{% extends "dreque_frontend/base.html" %}
+{% load dreque_tags %}
+
+{% block title %}Overview{% endblock %}
+
+{% block menu_overview %}
+    
+{% endblock %}
+
+{% block content %}
+    <h2>Queues ({{ dreque.queues|length }})</h2>
+    <div class="clearer"></div>
+    
+    <table id="table_queues" class="narrow" border="1" cellspacing="0" cellpadding="5">
+        <thead>
+            <tr>
+                <th>Queue</th>
+                <th>Size</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in dreque.queues %}
+            <tr class="{% cycle odd,even as rowcolors %}">
+                <td><a href="{% url dreque_queue_detail item %}">{{ item }}</a></td>
+                <td>{{ dreque|size:item }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <p id="queue_explain" class="explanation">The table to the left displays your current queues, and the number of jobs currently in them. 
+        You can get more info about the pending jobs by clicking on the queue.</p>
+    
+    <div class="clearer" style="height: 60px;"></div>
+    
+    <h2>Workers ({{ worker.workers|length }})</h2>
+    <p class="info">The currently workers</p>
+    <table border="1" cellspacing="0" cellpadding="5">
+        <thead>
+            <tr>
+                <th>Worker</th>
+                <th>Queue</th>
+                <th>Function</th>
+                <th>args</th>
+                <th>kwargs</th>
+                <th>Started</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for work in worker.workers %}
+                    {% with worker|working_on:work|evaluate as job %}
+                    <tr class="{% cycle odd,even as rowcolors %}">
+                        <td>{{ work }}</td>
+                        <td>{{ job.queue }}</td>
+                        <td>{{ job.func }}</td>
+                        <td>{{ job.args|none_or_list|default:"( )" }}</td>
+                        <td>
+                            {% for arg in job.kwargs.items %}
+                            <em>{{ arg.0 }}</em>: {{ arg.1 }}<br>
+                        {% endfor %}
+                        </td>
+                        <td>{{ job.run_at|from_timestamp|date:"Y.m.d H:i:s" }}</td>
+                    </tr>
+                    {% endwith %}
+            {% empty %}
+            <tr>
+                <td colspan="4"><em>No active workers</em></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+{% endblock %}

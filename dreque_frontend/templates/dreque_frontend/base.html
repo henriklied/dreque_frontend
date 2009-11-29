@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+        <title>{% block title %}{% endblock %} | Dreque</title>
+        <link rel="stylesheet" href="{{ MEDIA_URL }}dreque/css/style.css" type="text/css" media="screen" charset="utf-8">
+    </head>
+    
+    <body>
+        <div class="full black top">
+            <div id="header" class="w980c">
+                <ul>
+                    <li><h1>Dreque</h1></li>
+                    {% block menu_overview %}
+                        <li id="menu_overview"><a href="{% url dreque_overview %}">« back to overview</a></li>
+                        <li class="clearer">&nbsp;</li>
+                    {% endblock %}
+                </ul>
+            </div>            
+        </div>
+        
+        <div id="content" class="w980c">
+            {% block content %}
+                
+            {% endblock %}
+        </div>
+        
+        <div class="full black bottom">
+            <div id="footer" class="w980c">
+                <p>Code on GitHub</p>
+            </div>
+        </div>
+    </body>
+</html>
