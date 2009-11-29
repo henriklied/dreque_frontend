@@ -1,6 +1,6 @@
 # Dreque frontend
 A Django-based application for monitoring the current state of your dreque ([dreque on GitHub](http://github.com/samuel/dreque)).
-Currently very much in development.
+Currently very much in development, so please try to excuse the complete lack of documentation.
 
 ## Requirements
 - [dreque](http://github.com/samuel/dreque)
